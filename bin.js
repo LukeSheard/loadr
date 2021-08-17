@@ -51,7 +51,7 @@ function run(NODE_OPTIONS) {
 	return new Promise((res, rej) => {
 		let pid = exec(command, { env });
 		if (pid.stderr) pid.stderr.pipe(process.stderr);
-		if (pid.stdout) pid.stdout.pipe(process.stderr);
+		if (pid.stdout) pid.stdout.pipe(process.stdout);
 		pid.on('error', rej).on('exit', code => {
 			return code ? rej(code) : res(0);
 		});
